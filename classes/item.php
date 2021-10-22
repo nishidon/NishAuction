@@ -372,4 +372,36 @@
       }
     }
 
+    public function SellerToDo(){//This is for notifications
+      $user_id = $_SESSION['user_id'];
+      $sql = "SELECT *
+              FROM items 
+              WHERE user_id = '$user_id'
+              AND item_status = 'S' 
+              ";
+      $result = $this->conn->query($sql);
+      if($result->num_rows > 0){
+        while($row = $result->fetch_assoc()){
+          $toDo[] = $row;
+        }
+        return $toDo;
+      }
+    }
+
+    public function WinnerToDo(){//This is for notifications
+      $user_id = $_SESSION['user_id'];
+      $sql = "SELECT *
+              FROM items 
+              WHERE highest_bidder_id = '$user_id'
+              AND item_status = 'SENT'
+              ";
+      $result = $this->conn->query($sql);
+      if($result->num_rows > 0){
+       while($row = $result->fetch_assoc()){
+          $toDo[] = $row;
+        }
+        return $toDo;
+      }
+    }
+
   }

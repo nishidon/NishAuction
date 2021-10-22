@@ -1,5 +1,10 @@
 <?php
+
     if(!empty($_SESSION)){
+        require_once "classes/item.php";
+        $user = new Item;
+        $sellerToDos = $user->SellerToDo();
+        $winnerToDos = $user->WinnerToDo();
         $fullName = $_SESSION['first_name']." ".$_SESSION['last_name'];
     }
 ?>
@@ -78,6 +83,12 @@
                             <ul class="user-login m-0">
                             <?php if(!empty($_SESSION)){ ?>
                                 <li>
+                                        <!-- Button trigger modal -->
+                                    <button type="button" class="btn btn-transparent" data-bs-toggle="modal" data-bs-target="#notifications">
+                                        <i class="fas fa-bell text-warning"></i>
+                                    </button>
+                                </li>
+                                <li>
                                     <a href="logout.php">Logout</a>
                                 </li>
                             <?php
@@ -100,4 +111,70 @@
             </div>
         </div>
     </header>
-        <!-- End Topbar -->
+    <!-- End Topbar -->
+    <!-- Modal -->
+    <div class="modal fade" id="notifications" tabindex="-1" aria-labelledby="notificationsLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="notificationsLabel">What To Do</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <?php
+            if(!empty($sellerToDos) || !empty($winnerToDos)){
+                if(!empty($sellerToDos)){
+                    echo "<span class='text-danger'>Send the following Items:</span><br>";
+                    foreach($sellerToDos as $sellerToDo){
+            ?>
+            <li>
+                <div>
+                    <a class="" href="bid.php?id=<?= $sellerToDo['item_id'] ?>"><img height="80px" width="80px" src="assets/images/item_images/<?= $sellerToDo['item_photo'] ?>" alt="#"></a>
+                </div>
+
+                <div class="content">
+                    <h4><a href="bid.php?id=<?= $sellerToDo['item_id'] ?>">
+                            <?= $sellerToDo['item_name'] ?></a></h4>
+                    <p class="quantity">Currently: <span class="text-primary">¥<?= $sellerToDo['current_price'] ?></span></p>
+                </div>
+            </li>
+            <?php
+                    }
+                }
+
+                if(!empty($winnerToDos)){
+                    echo "<span class='text-danger'>Receive the following Items:</span><br>";
+                    foreach($winnerToDos as $winnerToDo){
+            ?>
+            <div class="row">
+                <hr>
+                <div class="col-3">
+                    <a class="" href="auction-winner.php?id=<?= $winnerToDo['item_id'] ?>">
+                        <img height="80px" width="80px" src="assets/images/item_images/<?= $winnerToDo['item_photo'] ?>" alt="#">
+                    </a>
+                </div>
+
+                <div class="col-9">
+                    <h4>
+                        <a href="auction-winner.php?id=<?= $winnerToDo['item_id'] ?>">
+                            <?= $winnerToDo['item_name'] ?>
+                        </a>
+                    </h4>
+                </div>
+            </div>
+            <?php
+                    }
+                }
+            }else{
+                echo "No notifications";
+            }
+                
+               
+            ?>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
+        </div>
+    </div>
+    </div>
