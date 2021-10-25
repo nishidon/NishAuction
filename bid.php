@@ -409,28 +409,30 @@
                             ?>
                             <!-- user info -->
                             <div class="card shadow-sm p-3 mb-5 bg-white rounded">
-                                <div class="row">
-                                    <div class="col-2">
-                                    <img src="assets/images/user_images/<?= $itemList['photo'] ?>" alt="profile image" class="rounded-circle" style="object-fit: cover;" width="60px" height="60px">
-                                    </div>
-                                    <div class="col-10 p-2">
-                                        <div class="row">
-                                            <h5 class="m-0 p-0">
-                                                <?php
-                                                echo $itemList['username'];
-                                                ?>
-                                            </h5>
-                                            <ul class="ms-0 ps-0 mt-1 mb-0">
-                                                <li><i class="lni lni-star-filled float-start text-warning"></i></li>
-                                                <li><i class="lni lni-star-filled float-start text-warning"></i></li>
-                                                <li><i class="lni lni-star-filled float-start text-warning"></i></li>
-                                                <li><i class="lni lni-star-filled float-start text-warning"></i></li>
-                                                <li><i class="lni lni-star float-start"></i></li>
-                                                <li><span>3 reviews</span></li>
-                                            </ul>
+                                <a href="evaluation.php?seller_id=<?= $itemList['user_id'] ?>">
+                                    <div class="row">
+                                        <div class="col-2">
+                                        <img src="assets/images/user_images/<?= $itemList['photo'] ?>" alt="profile image" class="rounded-circle" style="object-fit: cover;" width="60px" height="60px">
+                                        </div>
+                                        <div class="col-10 p-2">
+                                            <div class="row">
+                                                <h5 class="m-0 p-0">
+                                                    <?php
+                                                    echo $itemList['username'];
+                                                    ?>
+                                                </h5>
+                                                <ul class="ms-0 ps-0 mt-1 mb-0">
+                                                    <li><i class="lni lni-star-filled float-start text-warning"></i></li>
+                                                    <li><i class="lni lni-star-filled float-start text-warning"></i></li>
+                                                    <li><i class="lni lni-star-filled float-start text-warning"></i></li>
+                                                    <li><i class="lni lni-star-filled float-start text-warning"></i></li>
+                                                    <li><i class="lni lni-star float-start"></i></li>
+                                                    <li><span># reviews</span></li>
+                                                </ul>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
+                                </a>
                             </div>
                             <?php
                                 }

@@ -1,5 +1,5 @@
 <?php
-session_start();
+include 'classes/item.php';
 include 'topbar.php';
 require_once 'functions/functions.php';
 title('dark', 'fas fa-user-cog', 'Dashboard');

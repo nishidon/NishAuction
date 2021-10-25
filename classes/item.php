@@ -143,7 +143,8 @@
           $this->conn->query($sql);
         }else{
           $sql = "UPDATE items
-          SET item_status = 'B'
+          SET item_status = 'B',
+              deal_status = 'OVER'
           WHERE item_id = '$item_id'
           AND item_status = 'A'
           ";
@@ -276,7 +277,7 @@
 
       $sql = "SELECT current_price 
               FROM items 
-              WHERE item_status = 'S'
+              WHERE item_status = 'RECEIVED'
               AND user_id = '$user_id'";
       $result = $this->conn->query($sql);
       if($result->num_rows > 0){
@@ -331,6 +332,7 @@
               WHERE (bids.bid_price = items.current_price) 
               AND (items.item_status = 'S' OR items.item_status = 'SENT' OR items.item_status = 'RECEIVED') 
               AND (bids.bidder_id = '$user_id')
+              ORDER BY close_datetime DESC
               ";
       $result = $this->conn->query($sql);
       if($result->num_rows > 0){

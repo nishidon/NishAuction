@@ -36,6 +36,53 @@
   </style>
 </head>
 <body>
+
+    <!-- ========================= JS here ========================= -->
+    <script src="assets/js/bootstrap.min.js"></script>
+    <script src="assets/js/tiny-slider.js"></script>
+    <script src="assets/js/glightbox.min.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script type="text/javascript">
+        //========= Hero Slider 
+        tns({
+            container: '.hero-slider',
+            slideBy: 'page',
+            autoplay: true,
+            autoplayButtonOutput: false,
+            mouseDrag: true,
+            gutter: 0,
+            items: 1,
+            nav: false,
+            controls: true,
+            controlsText: ['<i class="lni lni-chevron-left"></i>', '<i class="lni lni-chevron-right"></i>'],
+        });
+
+        //======== Brand Slider
+        tns({
+            container: '.brands-logo-carousel',
+            autoplay: true,
+            autoplayButtonOutput: false,
+            mouseDrag: true,
+            gutter: 15,
+            nav: false,
+            controls: false,
+            responsive: {
+                0: {
+                    items: 1,
+                },
+                540: {
+                    items: 3,
+                },
+                768: {
+                    items: 5,
+                },
+                992: {
+                    items: 6,
+                }
+            }
+        });
+    </script>
+
 <!-- Start Header Area -->
     <header class="header navbar-area">
         <!-- Start Topbar -->
@@ -120,48 +167,51 @@
             <h5 class="modal-title" id="notificationsLabel">What To Do</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
-        <div class="modal-body">
+        <div class="modal-body p-4">
             <?php
             if(!empty($sellerToDos) || !empty($winnerToDos)){
                 if(!empty($sellerToDos)){
-                    echo "<span class='text-danger'>Send the following Items:</span><br>";
+                    echo "<span class='text-danger mb-3'>Send the following Items:</span><br>";
                     foreach($sellerToDos as $sellerToDo){
             ?>
-            <li>
-                <div>
-                    <a class="" href="bid.php?id=<?= $sellerToDo['item_id'] ?>"><img height="80px" width="80px" src="assets/images/item_images/<?= $sellerToDo['item_photo'] ?>" alt="#"></a>
+                <div class="row p-3 shadow mb-3" style="background-color: #F8EFE4;">
+                    <div class="col-3">
+                        <a class="" href="seller.php?id=<?= $sellerToDo['item_id'] ?>">
+                            <img class="rounded" height="80px" width="80px" src="assets/images/item_images/<?= $sellerToDo['item_photo'] ?>" alt="#">
+                            </a>
+                    </div>
+                    
+                    <div class="col-9">
+                        <h5>
+                            <a href="seller.php?id=<?= $sellerToDo['item_id'] ?>">
+                                <?= $sellerToDo['item_name'] ?>
+                            </a>
+                        </h5>
+                    </div>
                 </div>
-
-                <div class="content">
-                    <h4><a href="bid.php?id=<?= $sellerToDo['item_id'] ?>">
-                            <?= $sellerToDo['item_name'] ?></a></h4>
-                    <p class="quantity">Currently: <span class="text-primary">¥<?= $sellerToDo['current_price'] ?></span></p>
-                </div>
-            </li>
             <?php
                     }
                 }
 
                 if(!empty($winnerToDos)){
-                    echo "<span class='text-danger'>Receive the following Items:</span><br>";
+                    echo "<span class='text-danger my-3'>Receive the following Items:</span><br>";
                     foreach($winnerToDos as $winnerToDo){
             ?>
-            <div class="row">
-                <hr>
-                <div class="col-3">
-                    <a class="" href="auction-winner.php?id=<?= $winnerToDo['item_id'] ?>">
-                        <img height="80px" width="80px" src="assets/images/item_images/<?= $winnerToDo['item_photo'] ?>" alt="#">
-                    </a>
-                </div>
-
-                <div class="col-9">
-                    <h4>
-                        <a href="auction-winner.php?id=<?= $winnerToDo['item_id'] ?>">
-                            <?= $winnerToDo['item_name'] ?>
+                <div class="row p-3 shadow mb-3" style="background-color: #F8EFE4;">
+                    <div class="col-3">
+                        <a class="" href="auction-winner.php?id=<?= $winnerToDo['item_id'] ?>">
+                            <img class="rounded" height="80px" width="80px" src="assets/images/item_images/<?= $winnerToDo['item_photo'] ?>" alt="#">
                         </a>
-                    </h4>
+                    </div>
+
+                    <div class="col-9">
+                        <h5>
+                            <a class="" href="auction-winner.php?id=<?= $winnerToDo['item_id'] ?>">
+                                <?= $winnerToDo['item_name'] ?>
+                            </a>
+                        </h5>
+                    </div>
                 </div>
-            </div>
             <?php
                     }
                 }

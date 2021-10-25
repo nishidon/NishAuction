@@ -149,50 +149,5 @@
     <a href="#" class="scroll-top">
         <i class="lni lni-chevron-up"></i>
     </a>
-
-    <!-- ========================= JS here ========================= -->
-    <script src="assets/js/bootstrap.min.js"></script>
-    <script src="assets/js/tiny-slider.js"></script>
-    <script src="assets/js/glightbox.min.js"></script>
-    <script src="assets/js/main.js"></script>
-    <script type="text/javascript">
-        //========= Hero Slider 
-        tns({
-            container: '.hero-slider',
-            slideBy: 'page',
-            autoplay: true,
-            autoplayButtonOutput: false,
-            mouseDrag: true,
-            gutter: 0,
-            items: 1,
-            nav: false,
-            controls: true,
-            controlsText: ['<i class="lni lni-chevron-left"></i>', '<i class="lni lni-chevron-right"></i>'],
-        });
-
-        //======== Brand Slider
-        tns({
-            container: '.brands-logo-carousel',
-            autoplay: true,
-            autoplayButtonOutput: false,
-            mouseDrag: true,
-            gutter: 15,
-            nav: false,
-            controls: false,
-            responsive: {
-                0: {
-                    items: 1,
-                },
-                540: {
-                    items: 3,
-                },
-                768: {
-                    items: 5,
-                },
-                992: {
-                    items: 6,
-                }
-            }
-        });
-    </script>
+    
     <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script> -->

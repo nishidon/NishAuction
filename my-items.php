@@ -29,11 +29,11 @@ title('dark', 'fas fa-user', 'My Items');
                         <div class="product-image">
                             <img src="assets/images/item_images/<?= $items['item_photo'] ?>" alt="#" height="200px">
                             <?php
-                               if($items['item_status'] == 'S' || $items['item_status'] == 'SENT'){
+                            if($items['item_status'] == 'B'){
+                              echo "<span class='sale-tag'>CLOSED</span>";
+                              }elseif($items['item_status'] != 'A'){
                                 echo "<span class='new-tag'>SOLD</span>";
-                               }elseif($items['item_status'] == 'B'){
-                                echo "<span class='sale-tag'>CLOSED</span>";
-                               }
+                              }
                             ?>
                             <?php
                             if($items['item_status'] == 'A'){

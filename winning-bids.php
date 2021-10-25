@@ -29,6 +29,11 @@ if(!empty($itemList)){
           <div class="single-product">
               <div class="product-image">
                   <img src="assets/images/item_images/<?= $winningBid['item_photo'] ?>" alt="#" height="200px">
+                  <?php
+                    if($winningBid['deal_status'] == 'OVER'){
+                        echo "<span class='sale-tag'>OVER</span>";
+                    }
+                    ?>
                   <div class="button">
                       <a href="auction-winner.php?id=<?= $winningBid['item_id'] ?>" class="btn"><i class="fas fa-handshake"></i>Deal</a>
                   </div>
