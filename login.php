@@ -1,5 +1,11 @@
 <?php
-    session_start();
+    include 'classes/user.php';
+    $user = new User;
+    if(!empty($_GET) && $_GET['error'] == 'banned'){
+      $user_id = $_SESSION['user_id'];
+      $banInfo = $user->getBanInfo($user_id);
+      session_destroy();
+    }
     include 'topbar.php';
     include 'functions/functions.php';
   ?>
@@ -18,6 +24,12 @@
       </div>
     </div>
     <?php
+    if(!empty($_GET) && $_GET['error'] == 'banned'){
+      alert(
+        "You are banned until <span class='text-danger'>".$banInfo['until']."</span> for the following reasons:<br><br><span class='text-danger'>".$banInfo['reasons']."</span><br><br>
+        For the duration of the suspention, you are not allowed to sell/bid any items.
+      ");
+    }
     if(empty($_SESSION) && !empty($_GET['error']) && $_GET['error'] == 'login'){
       alert('Please login to bid.');
     }

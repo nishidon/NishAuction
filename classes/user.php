@@ -33,11 +33,13 @@
             $_SESSION['last_name'] = $user_details['last_name'];
             $_SESSION['status'] = $user_details['status'];
 
-            // if($_SESSION['status'] != A){
-            //   header('Location: ../profile.php');
-            // }else{
-              header("Location: ../index.php");
-            // }
+            if($_SESSION['status'] != 'B'){
+              header('Location: ../index.php');
+              exit;
+            }else{
+              header("Location: ../login.php?error=banned");
+              exit;
+             }
 
           }
         }else{
@@ -186,25 +188,74 @@
       }
 
       $until = date('Y/m/d H:i', $day);
-
-      echo $until;
-      // $sql1 = "UPDATE users
-      //         SET status = 'B-$time'
-      //         WHERE user_id = '$user_id'
-      //         ";
-
-      // $sql2 = "INSERT INTO bans(user_id, reasons) VALUES('$user_id', '$reasons', '$until')";
-
-      // $result2 = $this->conn->query($sql2); 
-      // $result1 = $this->conn->query($sql1);
       
-      // if($result1 && $result2){
-      //   header('Location: ../user.php');
-      //   exit;
-      // }else{
-      //   die($this->conn->error);
-      // }
+
+      $sql1 = "UPDATE users
+              SET status = 'B'
+              WHERE user_id = '$user_id'
+              ";
+
+      $sql2 = "INSERT INTO bans(user_id, reasons, until) VALUES('$user_id', '$reasons', '$until')";
+
+      $result2 = $this->conn->query($sql2); 
+      $result1 = $this->conn->query($sql1);
+      
+      if($result1 && $result2){
+        header('Location: ../users.php');
+        exit;
+      }else{
+        die($this->conn->error);
+      }
     }
 
+    public function AutoCancelBans(){
+      $dateTime = date('Y/m/d H:i:s');
+      $sql = "SELECT * FROM bans WHERE until < '$dateTime'";
+      $result = $this->conn->query($sql);
+      if($result->num_rows > 0){
+        while($row = $result->fetch_assoc()){
+          $unban_user = $row['user_id'];
+          
+          // $unban_user = $expired['user_id'];
+          $sql1 = "DELETE FROM bans 
+                    WHERE user_id = '$unban_user'";
+
+          $sql2 = "UPDATE users
+                    SET status = 'U'
+                    WHERE user_id = '$unban_user'
+                    ";
+
+          $result1 = $this->conn->query($sql1);
+          $result2 = $this->conn->query($sql2);
+        }
+      }
+    }
+
+      public function ManualCancelBans($user_id){
+        $sql1 = "DELETE FROM bans 
+                  WHERE user_id = '$user_id'
+                  ";
+
+        $sql2 = "UPDATE users
+                  SET status = 'U'
+                  WHERE user_id = '$user_id'
+                  ";
+        $result1 = $this->conn->query($sql1);
+        $result2 = $this->conn->query($sql2);
+
+        if($result1 && $result2){
+          header('Location: ../users.php');
+          exit;
+        }else{
+          die($this->conn->error);
+        }
+      }
+    
+      public function getBanInfo($user_id){
+        $sql = "SELECT * FROM bans WHERE user_id = '$user_id'";
+        $result = $this->conn->query($sql);
+        $row = $result->fetch_assoc();
+        return $row;
+      }
     
   }

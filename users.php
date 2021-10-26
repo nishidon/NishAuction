@@ -5,6 +5,7 @@ $users = $rows->getUsers();
 include "topbar.php";
 require_once "functions/functions.php";
 title('dark', 'fas fa-user-cog', 'Users');
+$rows->AutoCancelBans();
 ?>
 <div class="container">
   <div class="row">
@@ -22,6 +23,15 @@ title('dark', 'fas fa-user-cog', 'Users');
           <?php
             foreach($users as $user){
               if($user['status'] != 'A'){
+                if($user['status'] == 'B'){
+                  $btn = 'UNBAN';
+                  $color = 'warning';
+                  $href = 'actions/unban';
+                }else{
+                  $btn = 'BAN';
+                  $color = 'danger';
+                  $href = 'ban';
+                }
               $fullname = $user['first_name']." ".$user['last_name']
           ?>
           <tr>
@@ -29,11 +39,10 @@ title('dark', 'fas fa-user-cog', 'Users');
             <td><?= $fullname ?></td>
             <td><?= $user['username'] ?></td>
             <td>
-              <a class="btn btn-outline-danger" href="ban.php?user_id=<?= $user['user_id'] ?>">BAN</a>
+              <a class="btn btn-outline-<?=$color?>" href="<?=$href?>.php?user_id=<?= $user['user_id'] ?>"><?=$btn?></a>
             </td>
           </tr>
           <?php
-          
             }
           }
           ?>

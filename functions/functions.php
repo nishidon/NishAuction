@@ -18,7 +18,7 @@ function title($color, $icon, $title){
 }
 
 function alert($alert){
-  echo "<h5 class='alert alert-danger role-alert text-center w-50 mx-auto my-3'>$alert</h5>";
+  echo "<h6 class='alert alert-danger role-alert text-center w-50 mx-auto my-3'>$alert</h6>";
 }
 
 function success($success){
