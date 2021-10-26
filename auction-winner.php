@@ -1,11 +1,15 @@
 <?php
 include 'classes/user.php';
 include 'classes/item.php';
+include 'classes/evaluation.php';
 $item_id = $_GET['id'];
 $user = new User();
 $dealInfo = $user->getClientInfo($item_id);
 $item = new Item;
 $itemList = $item->getOneItem($item_id);
+$evaluate = new Evaluate;
+$starAvg = $evaluate->getEvaluateAvg($itemList['user_id']);
+$reviewNum = $evaluate->getEvaluateNum($itemList['user_id']);
 include 'topbar.php';
 include 'functions/functions.php';
 title('dark', 'fas fa-handshake', 'Deal');
@@ -74,13 +78,17 @@ title('dark', 'fas fa-handshake', 'Deal');
                             echo $itemList['username'];
                             ?>
                         </h5>
-                        <ul class="ms-0 ps-0 mt-1 mb-0">
-                            <li><i class="lni lni-star-filled float-start text-warning"></i></li>
-                            <li><i class="lni lni-star-filled float-start text-warning"></i></li>
-                            <li><i class="lni lni-star-filled float-start text-warning"></i></li>
-                            <li><i class="lni lni-star-filled float-start text-warning"></i></li>
-                            <li><i class="lni lni-star float-start"></i></li>
-                            <li><span>3 reviews</span></li>
+                        <ul class="ms-0 ps-0 mt-1 mb-0 text-muted">
+                        <?php
+                          for($i=1; $i<=$starAvg; $i++){
+                            echo "<li><i class='lni lni-star-filled float-start text-warning pt-1'></i></li>";
+                          }
+                          for($i=1; $i<=(5-$starAvg); $i++){
+                            echo "<li><i class='lni lni-star float-start pt-1'></i></li>";
+                          }
+                  
+                        ?>
+                          <li><span><?=str_repeat('&nbsp;', 5). $reviewNum; ?>reviews</span></li>
                         </ul>
                     </div>
                 </div>

@@ -34,13 +34,13 @@
         </div> -->
         <!-- End Footer Top -->
         <!-- Start Footer Middle -->
-        <div class="footer-middle">
+        <!-- <div class="footer-middle">
             <div class="container">
                 <div class="bottom-inner">
-                    <div class="row">
-                        <div class="col-lg-4 col-md-6 col-12">
+                    <div class="row"> -->
+                        <!-- <div class="col-lg-4 col-md-6 col-12"> -->
                             <!-- Single Widget -->
-                            <div class="single-footer f-contact">
+                            <!-- <div class="single-footer f-contact">
                                 <h3>Get In Touch With Us</h3>
                                 <p class="phone">Phone: +1 (900) 33 169 7720</p>
                                 <ul>
@@ -50,9 +50,9 @@
                                 <p class="mail">
                                     <a href="mailto:support@shopgrids.com">support@shopgrids.com</a>
                                 </p>
-                            </div>
+                            </div> -->
                             <!-- End Single Widget -->
-                        </div>
+                        <!-- </div> -->
                         <!-- <div class="col-lg-4 col-md-6 col-12"> -->
                             <!-- Single Widget -->
                             <!-- <div class="single-footer our-app">
@@ -76,10 +76,10 @@
                             </div> -->
                             <!-- End Single Widget -->
                         <!-- </div> -->
-                        <div class="col-lg-4 col-md-6 col-12">
+                        <!-- <div class="col-lg-4 col-md-6 col-12"> -->
                             <!-- Single Widget -->
-                            <div class="single-footer f-link">
-                                <h3>Information</h3>
+                            <!-- <div class="single-footer f-link"> -->
+                                <!-- <h3>Information</h3>
                                 <ul>
                                     <li><a href="javascript:void(0)">About Us</a></li>
                                     <li><a href="javascript:void(0)">Contact Us</a></li>
@@ -87,12 +87,12 @@
                                     <li><a href="javascript:void(0)">Sitemap</a></li>
                                     <li><a href="javascript:void(0)">FAQs Page</a></li>
                                 </ul>
-                            </div>
+                            </div> -->
                             <!-- End Single Widget -->
-                        </div>
-                        <div class="col-lg-4 col-md-12 col-12">
+                        <!-- </div> -->
+                        <!-- <div class="col-lg-4 col-md-12 col-12"> -->
                             <!-- Single Widget -->
-                            <div class="single-footer f-link">
+                            <!-- <div class="single-footer f-link">
                                 <h3>Shop Departments</h3>
                                 <ul>
                                     <li><a href="javascript:void(0)">Computers & Accessories</a></li>
@@ -101,13 +101,13 @@
                                     <li><a href="javascript:void(0)">Cameras, Photo & Video</a></li>
                                     <li><a href="javascript:void(0)">Headphones</a></li>
                                 </ul>
-                            </div>
+                            </div> -->
                             <!-- End Single Widget -->
-                        </div>
-                    </div>
+                        <!-- </div> -->
+                    <!-- </div>
                 </div>
             </div>
-        </div>
+        </div> -->
         <!-- End Footer Middle -->
         <!-- Start Footer Bottom -->
         <div class="footer-bottom">
@@ -122,8 +122,7 @@
                         </div>
                         <div class="col-lg-4 col-12">
                             <div class="copyright">
-                                <p>Designed and Developed by<a href="https://graygrids.com/" rel="nofollow"
-                                        target="_blank">GrayGrids</a></p>
+                                <p>NishAuction ｜ Ryuichi Nishimura</p>
                             </div>
                         </div>
                         <div class="col-lg-4 col-12">
@@ -149,5 +148,5 @@
     <a href="#" class="scroll-top">
         <i class="lni lni-chevron-up"></i>
     </a>
-    
+
     <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script> -->

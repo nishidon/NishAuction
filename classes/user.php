@@ -1,4 +1,5 @@
 <?php
+  date_default_timezone_set('Asia/Tokyo');
   require_once "database.php";
   class User extends Database{
     public function createUser($first_name, $last_name, $address, $uname, $pass){
@@ -172,6 +173,37 @@
        $row = $result->fetch_assoc();
        return $row;
       }
+    }
+
+    public function banUsers($user_id, $time, $reasons){
+      
+      if($time == '1'){
+        $day = strtotime('+1day');
+      }elseif($time == '3'){
+        $day = strtotime('+3day');
+      }elseif($time == 'w'){
+        $day = strtotime('+1week');
+      }
+
+      $until = date('Y/m/d H:i', $day);
+
+      echo $until;
+      // $sql1 = "UPDATE users
+      //         SET status = 'B-$time'
+      //         WHERE user_id = '$user_id'
+      //         ";
+
+      // $sql2 = "INSERT INTO bans(user_id, reasons) VALUES('$user_id', '$reasons', '$until')";
+
+      // $result2 = $this->conn->query($sql2); 
+      // $result1 = $this->conn->query($sql1);
+      
+      // if($result1 && $result2){
+      //   header('Location: ../user.php');
+      //   exit;
+      // }else{
+      //   die($this->conn->error);
+      // }
     }
 
     

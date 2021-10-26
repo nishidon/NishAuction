@@ -4,6 +4,7 @@
     include 'functions/functions.php';
     include 'classes/category.php';
     include 'classes/favorite.php';
+    include 'classes/evaluation.php';
     $item_id = $_GET['id'];
     $row = new Item();
     $itemList = $row->getOneItem($item_id);
@@ -13,6 +14,9 @@
     $bidders = $row->getBidders($item_id);
     $rows = new Category();
     $catList = $rows->getCat();
+    $evaluate = new Evaluate;
+    $starAvg = $evaluate->getEvaluateAvg($itemList['user_id']);
+    $reviewNum = $evaluate->getEvaluateNum($itemList['user_id']);
     if(!empty($_SESSION)){
         $fav = new Favorite();
         $user_id = $_SESSION['user_id'];
@@ -39,7 +43,7 @@
                         <div class="main-menu-search">
                             <!-- navbar search start -->
                             <div class="navbar-search search-style-5">
-                                <div class="search-select">
+                                <!-- <div class="search-select">
                                     <div class="select-position">
                                         <select id="select1">
                                             <option selected>All</option>
@@ -50,25 +54,17 @@
                                             <option value="5">option 05</option>
                                         </select>
                                     </div>
-                                </div>
+                                </div> -->
                                 <form action="index.php" method="post" class="w-100">
                                     <div class="row">
-                                <div class="col-10" style="padding-right: 0">
-                                    <input class="form-control w-100 me-0 h-100" name="search" type="text" placeholder="Search">
-                                </div>
-                                <div class="col-2" style="padding-left: 0">
-                                    <span class="bg-dark p-1 border rounded">
-                                        <input type="submit" name="submit" value="Search" class="btn btn-dark">
-                                    </span> 
-                                </div>
-                                    <!-- <div class="search-input">
-                                        <input name="search" type="text" placeholder="Search">
-                                    </div>
-                                    <div class="search-btn">
-                                        <button type="submit" name="submit">
-                                            <i class="lni lni-search-alt"></i>
-                                        </button>
-                                    </div> -->
+                                        <div class="col-10" style="padding-right: 0">
+                                            <input class="form-control w-100 me-0 h-100" name="search" type="text" placeholder="Search">
+                                        </div>
+                                        <div class="col-2" style="padding-left: 0">
+                                            <span class="bg-dark p-1 border rounded">
+                                                <input type="submit" name="submit" value="Search" class="btn btn-dark">
+                                            </span> 
+                                        </div>
                                     </div>
                                 </form>
                             </div>
@@ -324,9 +320,18 @@
                         </div>
                     </div>
                     <div class="col-lg-6 col-md-12 col-12">
-                        <div class="product-info">
+                        <div class="product-info mt-5">
                             <h2 class=""><?= $itemList['item_name'] ?></h2>
-                            <p class="category"><i class="lni lni-tag"></i> <?= $itemList['category_name'] ?></p>
+                            <form action="index.php" method="post">
+                                <label>
+                                    <input type="hidden" value="<?=$itemList['category_name']?>" name="search">
+                                    <input type="submit" name="submit" style="display: none;">
+                                    <p>
+                                        <i class="lni lni-tag"></i> 
+                                        <?= $itemList['category_name'] ?>
+                                    </p>
+                                </label>
+                            </form>
                             <?php
                                 if($bidNum['bid_num'] > 0){
                             ?>
@@ -421,13 +426,17 @@
                                                     echo $itemList['username'];
                                                     ?>
                                                 </h5>
-                                                <ul class="ms-0 ps-0 mt-1 mb-0">
-                                                    <li><i class="lni lni-star-filled float-start text-warning"></i></li>
-                                                    <li><i class="lni lni-star-filled float-start text-warning"></i></li>
-                                                    <li><i class="lni lni-star-filled float-start text-warning"></i></li>
-                                                    <li><i class="lni lni-star-filled float-start text-warning"></i></li>
-                                                    <li><i class="lni lni-star float-start"></i></li>
-                                                    <li><span># reviews</span></li>
+                                                <ul class="ms-0 ps-0 mt-1 mb-0 text-muted">
+                                                    <?php
+                                                    for($i=1; $i<=$starAvg; $i++){
+                                                    echo "<li><i class='lni lni-star-filled float-start text-warning pt-1'></i></li>";
+                                                    }
+                                                    for($i=1; $i<=(5-$starAvg); $i++){
+                                                    echo "<li><i class='lni lni-star float-start pt-1'></i></li>";
+                                                    }
+                                            
+                                                    ?>
+                                                    <li><span><?=str_repeat('&nbsp;', 5). $reviewNum; ?> reviews</span></li>
                                                 </ul>
                                             </div>
                                         </div>

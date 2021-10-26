@@ -49,7 +49,7 @@
                         <div class="main-menu-search">
                             <!-- navbar search start -->
                             <div class="navbar-search search-style-5">
-                                <div class="search-select">
+                                <!-- <div class="search-select">
                                     <div class="select-position">
                                         <select id="select1">
                                             <option selected>All</option>
@@ -60,7 +60,7 @@
                                             <option value="5">option 05</option>
                                         </select>
                                     </div>
-                                </div>
+                                </div> -->
                                 <form action="" method="post" class="w-100">
                                     <div class="row">
                                 <div class="col-10" style="padding-right: 0">
@@ -337,15 +337,6 @@
                                 <i class="lni lni-tag"></i> 
                                 <?= $items['category_name'];?>
                             </span><br>
-
-                            <!-- <ul class="review">
-                                <li><i class="lni lni-star-filled"></i></li>
-                                <li><i class="lni lni-star-filled"></i></li>
-                                <li><i class="lni lni-star-filled"></i></li>
-                                <li><i class="lni lni-star-filled"></i></li>
-                                <li><i class="lni lni-star"></i></li>
-                                <li><span>4.0 Review(s)</span></li>
-                            </ul> -->
                             <div>
                                 <span class="mb-2">Ends In: <br><span class="text-danger"><?= $endsIn ?></span></span>
                             </div>
@@ -369,12 +360,14 @@
             ?>
             <div class="row">
             <?php
+            $count = 0;
             if(!empty($allItems)){
                 foreach($allItems as $items){
                     if($items['category_id'] == $_GET['category_id']){
                     $row->updateItemStatus($items['item_id']);
                     $bidNum = $row->getOneBid($items['item_id']);
                     $endsIn = $row->getOneEnd($items['item_id']);
+                    $count++;
                 ?>
                 <div class="col-lg-3 col-md-6 col-12">
                     <!-- Start Single Product -->
@@ -393,15 +386,6 @@
                                 <i class="lni lni-tag"></i> 
                                 <?= $items['category_name'];?>
                             </span><br>
-
-                            <!-- <ul class="review">
-                                <li><i class="lni lni-star-filled"></i></li>
-                                <li><i class="lni lni-star-filled"></i></li>
-                                <li><i class="lni lni-star-filled"></i></li>
-                                <li><i class="lni lni-star-filled"></i></li>
-                                <li><i class="lni lni-star"></i></li>
-                                <li><span>4.0 Review(s)</span></li>
-                            </ul> -->
                             <div>
                             <span class="mb-2">Ends In: <br><span class="text-danger"><?= $endsIn ?></span></span>
                             </div>
@@ -419,7 +403,8 @@
                 <?php
                         }
                     }
-                }else{
+                }
+                if($count < 1){
                     echo "<h3 class='text-muted text-center'>No items were found in the category.</h3>";
                 }
             }elseif($search_result != 'error'){
@@ -450,15 +435,6 @@
                             <h5 class="mb-2">
                                 <a href="product-grids.html"><?= $search['item_name'] ?></a>
                             </h5>
-
-                            <!-- <ul class="review">
-                                <li><i class="lni lni-star-filled"></i></li>
-                                <li><i class="lni lni-star-filled"></i></li>
-                                <li><i class="lni lni-star-filled"></i></li>
-                                <li><i class="lni lni-star-filled"></i></li>
-                                <li><i class="lni lni-star"></i></li>
-                                <li><span>4.0 Review(s)</span></li>
-                            </ul> -->
                             <div>
                                <span class="mb-2">Ends In: <br><span class="text-danger"><?= $endsIn ?></span></span>
                             </div>
@@ -477,18 +453,24 @@
                 }
             }else{
                 echo "
-                <p>
-                Your search - $item_name - did not match any items.<br>
-                <br>
-                Suggestions:<br>
-                <br>
-                Make sure that all words are spelled correctly.<br>
-                Try different keywords.<br>
-                Try more general keywords.<br>
-                <h1>
+                <div class='row'>
+                    <div class='col-3 mx-auto'>
+                        <p>
+                        Your search - $item_name - did not match any items.<br>
+                        <br>
+                        Suggestions:<br>
+                        <br>
+                        Make sure that all words are spelled correctly.<br>
+                        Try different keywords.<br>
+                        Try more general keywords.<br>
+                    </div>
+                </div>
                 ";
         }
                 ?>
+                
+
+                    
                 <!-- <div class="col-lg-3 col-md-6 col-12">
                     <div class="single-product">
                         <div class="product-image">
@@ -718,7 +700,7 @@
     <!-- End Call Action Area -->
 
     <!-- Start Banner Area -->
-    <section class="banner section">
+    <!-- <section class="banner section">
         <div class="container">
             <div class="row">
                 <div class="col-lg-6 col-md-6 col-12">
@@ -747,7 +729,7 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> -->
     <!-- End Banner Area -->
 
     <!-- Start Shipping Info -->

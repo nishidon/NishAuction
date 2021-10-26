@@ -7,6 +7,8 @@ $users = new User;
 $items = new Item;
 $evaluation = new Evaluate;
 $evaluationInfo = $evaluation->getEvaluate($seller_id);
+$starAvg = $evaluation->getEvaluateAvg($seller_id);
+$reviewNum = $evaluation->getEvaluateNum($seller_id);
 
 include 'topbar.php';
 include 'functions/functions.php';
@@ -33,13 +35,16 @@ title('dark', 'fas fa-comment-alt', 'Seller Evaluation');
                 echo $sellerInfo['username'];
                 ?>
             </h5>
-            <ul class="ms-0 ps-0 mt-1 mb-0">
-              <li><i class="lni lni-star-filled float-start text-warning"></i></li>
-              <li><i class="lni lni-star-filled float-start text-warning"></i></li>
-              <li><i class="lni lni-star-filled float-start text-warning"></i></li>
-              <li><i class="lni lni-star-filled float-start text-warning"></i></li>
-              <li><i class="lni lni-star float-start"></i></li>
-              <li><span># reviews</span></li>
+            <ul class="ms-0 ps-0 mt-1 mb-0 text-muted">
+              <?php
+              for($i=1; $i<=$starAvg; $i++){
+              echo "<li><i class='lni lni-star-filled float-start text-warning pt-1'></i></li>";
+              }
+              for($i=1; $i<=(5-$starAvg); $i++){
+              echo "<li><i class='lni lni-star float-start pt-1'></i></li>";
+              }
+              ?>
+              <li><span><?=str_repeat('&nbsp;', 5). $reviewNum; ?> reviews</span></li>
             </ul>
           </div>
         </div>

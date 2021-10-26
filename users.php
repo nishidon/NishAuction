@@ -28,9 +28,12 @@ title('dark', 'fas fa-user-cog', 'Users');
             <td><?= $user['user_id'] ?></td>
             <td><?= $fullname ?></td>
             <td><?= $user['username'] ?></td>
-            <td><a class="btn btn-outline-danger" href="ban.php">BAN</a></td>
+            <td>
+              <a class="btn btn-outline-danger" href="ban.php?user_id=<?= $user['user_id'] ?>">BAN</a>
+            </td>
           </tr>
           <?php
+          
             }
           }
           ?>

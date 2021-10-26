@@ -16,8 +16,9 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Nish Auction</title>
-  <link rel="shortcut icon" type="image/x-icon" href="assets/images/favicon.svg" />
-
+  <!-- <link rel="shortcut icon" type="image/x-icon" href="assets/images/favicon.svg" /> -->
+  <link rel="shortcut icon" type="image/x-icon" href="assets/images/gavel-solid.svg" />
+  <!-- <link rel="shortcut icon" href="favicon.ico"/> -->
   <!-- ========================= CSS here ========================= -->
   <link rel="stylesheet" href="assets/css/bootstrap.min.css" />
   <link rel="stylesheet" href="assets/css/LineIcons.3.0.css" />
@@ -174,13 +175,13 @@
                     echo "<span class='text-danger mb-3'>Send the following Items:</span><br>";
                     foreach($sellerToDos as $sellerToDo){
             ?>
-                <div class="row p-3 shadow mb-3" style="background-color: #F8EFE4;">
+                <div class="row p-3 shadow mb-3" style="background-color: #FFFAFA;">
                     <div class="col-3">
                         <a class="" href="seller.php?id=<?= $sellerToDo['item_id'] ?>">
                             <img class="rounded" height="80px" width="80px" src="assets/images/item_images/<?= $sellerToDo['item_photo'] ?>" alt="#">
                             </a>
                     </div>
-                    
+
                     <div class="col-9">
                         <h5>
                             <a href="seller.php?id=<?= $sellerToDo['item_id'] ?>">

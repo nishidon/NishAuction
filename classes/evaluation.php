@@ -44,4 +44,21 @@ class Evaluate extends Database{
       return $evaluation;
     }
   }
+
+  public function getEvaluateNum($user_id){
+    $sql = "SELECT COUNT(*) FROM evaluation WHERE seller_id = '$user_id'";
+    $result = $this->conn->query($sql);
+    $row = $result->fetch_assoc();
+    $reviewNum = $row['COUNT(*)'];
+    return $reviewNum;
+  }
+
+  public function getEvaluateAvg($user_id){
+    $sql = "SELECT AVG(star) AS avarageStar FROM evaluation WHERE seller_id = '$user_id'";
+    $result = $this->conn->query($sql);
+    $row = $result->fetch_assoc();
+    $star = round($row['avarageStar']);
+    return $star;//Avarage Number of stars
+  }
+
 }
