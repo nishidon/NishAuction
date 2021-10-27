@@ -21,6 +21,9 @@
   }else{
     $selling = 'no';
   }
+  if(!empty($_GET['action']) && $_GET['action'] == 'shipping'){
+    $_SESSION['item_id'] = $_GET['id'];
+  }
 ?>
 
 <div class="container my-5">

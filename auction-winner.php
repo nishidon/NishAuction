@@ -17,10 +17,23 @@ title('dark', 'fas fa-handshake', 'Deal');
 <div class="container">
   <div class="row">
     <?php
+      if(!empty($_GET['payment']) && $_GET['payment'] == 'success'){
+    ?>
+    <div class="row">
+      <div class="col mt-5">
+        <h4 class="text-center text-dark">Thank you. The payment has been completed.</h4>
+      </div>
+    </div>
+    <?php
+      }
+    ?>
+    <?php
       if($dealInfo['item_status'] == 'S'){
     ?>
-     <div class="col mt-5">
-      <h4 class="text-center text-success">Please wait until the seller sends the item.</h4>
+    <div class="row">
+      <div class="col mt-5">
+        <h4 class="text-center text-success">Please wait until the seller sends the item.</h4>
+      </div>
     </div>
     <?php
       }elseif($dealInfo['item_status'] == 'SENT'){

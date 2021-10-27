@@ -75,7 +75,11 @@
     }
 
     public function updateUser($user_id, $first_name, $last_name, $uname, $address, $photo_name, $tmp_name){
-      
+      // if(!empty($_SESSION['item_id'])){
+      //   $item_id = $_SESSION['item_id'];
+      //   echo $item_id;
+      // }
+
       if(empty($photo_name)){
         $sql = "SELECT photo FROM users WHERE user_id = '$user_id'";
         $result = $this->conn->query($sql);
@@ -95,10 +99,10 @@
         $_SESSION['last_name'] = $last_name;
         $_SESSION['address'] = $address;
 
-        echo $_SESSION['username'];
-        echo $_SESSION['first_name'];
-        echo $_SESSION['last_name'];
-        echo $_SESSION['address'];
+        // echo $_SESSION['username'];
+        // echo $_SESSION['first_name'];
+        // echo $_SESSION['last_name'];
+        // echo $_SESSION['address'];
         $sql = "UPDATE users
                 SET first_name = '$first_name',
                     last_name = '$last_name',
@@ -110,8 +114,15 @@
 
         if ($result){
           move_uploaded_file($_FILES['photo']['tmp_name'], $target_file);
-          header("Location: ../edit-profile.php?error=NoErrors");
-          exit;
+          if(empty($_SESSION['item_id'])){
+            header("Location: ../edit-profile.php?error=NoErrors");
+            exit;
+          }else{
+            $item_id = $_SESSION['item_id'];
+            header("Location: ../payment.php?id=".$item_id);
+            exit;
+          }
+          
         }else{
           header("Location: ../edit-profile.php?error=duplicate");
           exit;

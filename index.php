@@ -3,6 +3,8 @@
     include 'classes/item.php';
     include 'classes/category.php';
     include 'classes/favorite.php';
+    include 'classes/user.php';
+    $users = new User;
     $row = new Item();
     $itemList = $row->getItems('index');
     $allItems = $row->getItems('all');
@@ -19,6 +21,7 @@
         $fav->removeClosedFav();
     }
     include 'topbar.php';
+    $users->AutoCancelBans();
 ?>
     <!-- Preloader -->
     <div class="preloader">

@@ -124,8 +124,8 @@
       $result = $this->conn->query($sql);
       if($result->num_rows == 1){
         $row = $result->fetch_assoc();
+        return $row;
       }
-      return $row;
     }
 
     //assign $item_id using foreach
@@ -136,7 +136,7 @@
       if(strtotime($row['close_datetime']) < strtotime(date('Y-m-d H:i:s'))){
         if($row['item_price'] < $row['current_price']){
           $sql = "UPDATE items
-          SET item_status = 'S'
+          SET item_status = 'P'
           WHERE item_id = '$item_id'
           AND item_status = 'A'
           ";
@@ -150,9 +150,42 @@
           ";
           $this->conn->query($sql);
         }
-
-       
       }
+    }
+
+    public function setPayment($item_id, $client_id, $method, $discount){
+      $sql = "SELECT current_price FROM items WHERE item_id = '$item_id'";
+      $result = $this->conn->query($sql);
+      if($result->num_rows == 1){
+        $row = $result->fetch_assoc();
+        $price = $row['current_price'];
+      }else{
+        die($this->conn->error);
+      }
+      if($discount == NULL){
+        $discount = 0;
+      }
+      $sql = "INSERT INTO payment(client_id, item_id, price, discount, method) VALUES('$client_id','$item_id','$price','$discount','$method')";
+      $result = $this->conn->query($sql);
+      if($result){
+        $sql = "UPDATE items
+        SET item_status = 'S'
+        WHERE item_id = '$item_id'
+        AND item_status = 'P'
+        ";
+        $this->conn->query($sql);
+        if($result){
+          header('Location: ../auction-winner.php?id='.$item_id.'&payment=success');
+          exit;
+        }else{
+          die($this->conn->error);
+        }
+       
+      }else{
+        die($this->conn->error);
+      }
+      
+
     }
 
     public function getOneEnd($id){
@@ -194,10 +227,8 @@
       $row = $result->fetch_assoc();
 
       if($row['current_price'] >= $bid_pr){
-
         header('Location: ../bid.php?result=fail&id='.$item_id);
         exit;
-
       }else{
         $sql = "INSERT INTO bids(bidder_id, item_id, bid_price, bid_datetime)
                 VALUES ('$user_id','$item_id','$bid_pr','$datetime')
@@ -330,7 +361,7 @@
               INNER JOIN items
               ON bids.item_id = items.item_id
               WHERE (bids.bid_price = items.current_price) 
-              AND (items.item_status = 'S' OR items.item_status = 'SENT' OR items.item_status = 'RECEIVED') 
+              AND items.item_status != 'A'
               AND (bids.bidder_id = '$user_id')
               ORDER BY close_datetime DESC
               ";

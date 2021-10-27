@@ -33,9 +33,18 @@ if(!empty($itemList)){
                     if($winningBid['deal_status'] == 'OVER'){
                         echo "<span class='sale-tag'>OVER</span>";
                     }
+                    if($winningBid['item_status'] != 'P'){
+                        $href = 'auction-winner';
+                        $icon = 'fas fa-handshake';
+                        $title = 'Deal';
+                    }else{
+                        $href = 'payment';
+                        $icon = 'fas fa-coins';
+                        $title = 'Payment';
+                    }
                     ?>
                   <div class="button">
-                      <a href="auction-winner.php?id=<?= $winningBid['item_id'] ?>" class="btn"><i class="fas fa-handshake"></i>Deal</a>
+                      <a href="<?=$href?>.php?id=<?= $winningBid['item_id'] ?>" class="btn"><i class="<?=$icon?>"></i><?=$title?></a>
                   </div>
               </div>
               <div class="product-info">
