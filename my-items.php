@@ -11,16 +11,17 @@ title('dark', 'fas fa-user', 'My Items');
   <div class="row">
   <?php
   if(!empty($itemList)){
-      foreach($itemList as $items){
+
+      foreach(array_reverse($itemList) as $items){
         $row->updateItemStatus($items['item_id']);
         $bidNum = $row->getOneBid($items['item_id']);
         $endsIn = $row->getOneEnd($items['item_id']);
   ?>
   <?php
-    if($items['item_status'] == 'A'){
-      $color = NULL;
-    }else{
+    if($items['item_status'] == 'RECEIVED' OR $items['item_status'] == 'B'){
       $color = '#E3E8E9';
+    }else{
+      $color = NULL;
     }
   ?>
       <div class="col-lg-3 col-md-6 col-12">
@@ -31,6 +32,10 @@ title('dark', 'fas fa-user', 'My Items');
                             <?php
                             if($items['item_status'] == 'B'){
                               echo "<span class='sale-tag'>CLOSED</span>";
+                              }elseif($items['item_status'] == 'P'){
+                                echo "<span class='new-tag bg-warning'>SOLD</span>";
+                              }elseif($items['item_status'] == 'RECEIVED'){
+                                echo "<span class='new-tag bg-success'>OVER</span>";
                               }elseif($items['item_status'] != 'A'){
                                 echo "<span class='new-tag'>SOLD</span>";
                               }
@@ -40,7 +45,7 @@ title('dark', 'fas fa-user', 'My Items');
                               $page = 'bid';
                               $btnName = 'Details';
                               $icon = 'fas fa-cog';
-                            }elseif($items['item_status'] == 'S' || $items['item_status'] == 'SENT' || $items['item_status'] == 'RECEIVED'){
+                            }elseif($items['item_status'] == 'S' || $items['item_status'] == 'SENT' || $items['item_status'] == 'RECEIVED' || $items['item_status'] == 'P' ){
                               $page = 'seller';
                               $btnName = 'Deal';
                               $icon = 'fas fa-handshake';

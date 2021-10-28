@@ -7,6 +7,8 @@ $user = new User();
 $dealInfo = $user->getClientInfo($item_id);
 $item = new Item;
 $itemList = $item->getOneItem($item_id);
+$paymentInfo = $item->getPayment($item_id);
+$discount = $paymentInfo['discount'];
 $evaluate = new Evaluate;
 $starAvg = $evaluate->getEvaluateAvg($itemList['user_id']);
 $reviewNum = $evaluate->getEvaluateNum($itemList['user_id']);
@@ -74,10 +76,92 @@ title('dark', 'fas fa-handshake', 'Deal');
     <?php
       }
     ?>
-    <div class="row mt-5">
+
+    <!--Item Info-->
+
+    <h3 style="margin-top: 200px;">Item Infomation</h3>
+    <div class="card top-area p-0">
+      <div class="row align-items-center">
+        <div class="col-lg-6 col-md-12 col-12">
+          <div class="product-images">
+            <main id="gallery">
+              <div class="main-img">
+                <img src="assets/images/item_images/<?= $dealInfo['item_photo'] ?>" id="current" alt="#">
+              </div>
+            </main>
+          </div>
+        </div>
+        <div class="col-lg-6 col-md-12 col-12">
+          <div class="product-info mt-5">
+            <div class="row">
+              <div class="col">
+                <h2 class="mb-5"><?= $dealInfo['item_name'] ?></h2>
+              </div>
+              <div class="row">
+                <div class="col">
+                  <h5 class="mb-3"><span class="text-muted">Item Price:</span></h5>
+                </div>
+                <div class="col">
+                  <h5> ¥<?=$dealInfo['current_price']?></h5>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col">
+                  <h5 class="mb-3"><span class="text-muted">Discount Coupon</span></h5>
+                </div>
+                <div class="col">
+                  <?php
+                  if($discount == 0){
+                    echo "<h5>No coupons selected</h5>";
+                  }else{
+                    echo "<h5> - ¥$discunt</h5>";
+                  }
+                  ?>
+                  
+                </div>
+              </div>
+            <div class="row">
+              <div class="col">
+                <h3 class="mb-3"><span class="text-muted">Total Price</span></h3>
+              </div>
+              <div class="col">
+                <h3><span class="text-danger">¥<?=$paymentInfo['price']?></span></h3>
+              </div>
+            </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+            
+    <div class="product-details-info mb-5">
+      <div class="single-block">
+        <div class="row">
+          <div class="col-lg-6 col-12">
+            <div class="info-body custom-responsive-margin">
+              <h4>Description</h4>
+                <p>
+                  <?= nl2br($dealInfo['description']) ?>
+                </p>
+              </div>
+            </div>
+            <div class="col-lg-6 col-12">
+              <div class="info-body">
+                <h4>Lot Details</h4>
+                <ul class="normal-list">
+                  <li><span>Opening Price: </span> ¥<?= $dealInfo['item_price'] ?></li>
+                  <li><span>Condition: </span> <?= $dealInfo['item_condition'] ?></li>
+                  <li><span class="text-danger mb-2">CLOSED AT:</span> <?= $dealInfo['close_datetime'] ?></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- <div class="row mt-5">
       <div class="col-6 mx-auto">
         <h3>Seller:</h3>
-        <!-- user info -->
         <div class="card shadow-sm p-3 mb-5 bg-white rounded">
           <a href="evaluation.php?seller_id=<?= $itemList['user_id'] ?>">
             <div class="row">
@@ -109,6 +193,6 @@ title('dark', 'fas fa-handshake', 'Deal');
           </a>
         </div>
       </div>
-    </div>
+    </div> -->
   </div>
 </div>

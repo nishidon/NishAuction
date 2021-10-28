@@ -1,5 +1,5 @@
  <!-- Start Footer Area -->
- <footer class="footer">
+ <footer class="footer mt-5 text-center mt-5 w-100 fixed-bottom">
         <!-- Start Footer Top -->
         <!-- <div class="footer-top">
             <div class="container">

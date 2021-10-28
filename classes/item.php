@@ -184,8 +184,15 @@
       }else{
         die($this->conn->error);
       }
-      
+    }
 
+    public function getPayment($item_id){
+      $sql = "SELECT * FROM payment WHERE item_id = '$item_id'";
+      $result = $this->conn->query($sql);
+      if($result->num_rows == 1){
+        $row = $result->fetch_assoc();
+        return $row;
+      }
     }
 
     public function getOneEnd($id){
@@ -300,25 +307,20 @@
       return $bidding;
     }
 
-
-
-    public function getSales(){
-      $user_id = $_SESSION['user_id'];
-      $sales = 0;
-
-      $sql = "SELECT current_price 
-              FROM items 
-              WHERE item_status = 'RECEIVED'
-              AND user_id = '$user_id'";
+    public function getSales($user_id){
+      $sql = "SELECT payment.price 
+              FROM payment 
+              INNER JOIN items
+              ON items.item_id = payment.item_id
+              WHERE items.user_id = '$user_id'";
       $result = $this->conn->query($sql);
       if($result->num_rows > 0){
         while($row = $result->fetch_assoc()){
-          $sales += $row['current_price'];
+          $sales[] = $row['price'];
+          // $sales += $row['price'];
         }
-      }else{
-        $sales = 0;
+        return $sales;
       }
-      return $sales;
     }
 
     public function searchItems($item_name){
