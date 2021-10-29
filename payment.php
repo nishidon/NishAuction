@@ -56,10 +56,10 @@ title('dark', 'fas fa-coins', 'Payment');
               <p class="text-dark">Payment Method</p>
               <select class="form-control" name="method" id="">
                 <option value hidden>-select-</option>
-                <option value="1">Option1</option>
-                <option value="2">Option2</option>
-                <option value="3">Option3</option>
-                <option value="4">Option4</option>
+                <option value="1">Visa</option>
+                <option value="2">American Express</option>
+                <option value="3">Master Card</option>
+                <option value="4">JCB</option>
               </select>
             </div>
           </div>

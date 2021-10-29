@@ -57,8 +57,12 @@
       <?php
         if(!empty($salesArray)){
       ?>
+      
       <div class='row'>
-        <div class='col-8 mx-auto mt-5'>
+        <div class='col-8 mx-auto mt-5' style="font-family: 'times new roman'">
+          <h3 class="border-bottom mb-3 text-success" >
+            Sales history
+          </h3>
           <table class="table">
             <thead>
               <tr>

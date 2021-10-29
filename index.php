@@ -329,7 +329,7 @@
                         <div class="product-image">
                             <img src="assets/images/item_images/<?= $items['item_photo'] ?>" alt="#" height="200px">
                             <div class="button">
-                                <a href="bid.php?id=<?= $items['item_id'] ?>" class="btn"><i class="fas fa-gavel"></i>Start bidding</a>
+                                <a href="bid.php?id=<?= $items['item_id'] ?>" class="btn"><i class="fas fa-gavel"></i>Bid</a>
                             </div>
                         </div>
                         <div class="product-info">

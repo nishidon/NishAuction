@@ -312,7 +312,9 @@
               FROM payment 
               INNER JOIN items
               ON items.item_id = payment.item_id
-              WHERE items.user_id = '$user_id'";
+              WHERE items.user_id = '$user_id'
+              AND items.item_status = 'RECEIVED'
+              ";
       $result = $this->conn->query($sql);
       if($result->num_rows > 0){
         while($row = $result->fetch_assoc()){
