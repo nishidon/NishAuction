@@ -1,10 +1,10 @@
 <?php
   session_start();
   class Database {
-    private $servername = "us-cdbr-east-04.cleardb.com";
-    private $username = "b8f3e0a37ee93a";
-    private $password = "af3a4c8d";
-    private $database = "heroku_6498cd5b2e1898a";
+    private $servername = "localhost";
+    private $username = "root";
+    private $password = "root";
+    private $database = "Nish Auction";
     public $conn;
 
     public function __construct(){

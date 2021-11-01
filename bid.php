@@ -32,29 +32,12 @@
             <div class="container">
                 <div class="row align-items-center">
                     <div class="col-lg-3 col-md-3 col-7">
-                        <!-- Start Header Logo -->
-                        <!-- <a class="navbar-brand" href="index.html">
-                            <img src="assets/images/logo/logo.svg" alt="Logo">
-                        </a> -->
-                        <!-- End Header Logo -->
                     </div>
                     <div class="col-lg-5 col-md-7 d-xs-none">
                         <!-- Start Main Menu Search -->
                         <div class="main-menu-search">
                             <!-- navbar search start -->
                             <div class="navbar-search search-style-5">
-                                <!-- <div class="search-select">
-                                    <div class="select-position">
-                                        <select id="select1">
-                                            <option selected>All</option>
-                                            <option value="1">option 01</option>
-                                            <option value="2">option 02</option>
-                                            <option value="3">option 03</option>
-                                            <option value="4">option 04</option>
-                                            <option value="5">option 05</option>
-                                        </select>
-                                    </div>
-                                </div> -->
                                 <form action="index.php" method="post" class="w-100">
                                     <div class="row">
                                         <div class="col-10" style="padding-right: 0">
@@ -74,12 +57,6 @@
                     </div>
                     <div class="col-lg-4 col-md-2 col-5 ps-5">
                         <div class="middle-right-area">
-                            <!-- <div class="nav-hotline">
-                                <i class="lni lni-phone"></i>
-                                <h3>Hotline:
-                                    <span>(+100) 123 456 7890</span>
-                                </h3>
-                            </div> -->
                             <?php
                              if(!empty($_SESSION)){
                             ?>
@@ -149,31 +126,6 @@
                                 <?php
                                     }
                                 ?>
-                                <!-- <li><a href="product-grids.html">Electronics <i class="lni lni-chevron-right"></i></a>
-                                    <ul class="inner-sub-category">
-                                        <li><a href="product-grids.html">Digital Cameras</a></li>
-                                        <li><a href="product-grids.html">Camcorders</a></li>
-                                        <li><a href="product-grids.html">Camera Drones</a></li>
-                                        <li><a href="product-grids.html">Smart Watches</a></li>
-                                        <li><a href="product-grids.html">Headphones</a></li>
-                                        <li><a href="product-grids.html">MP3 Players</a></li>
-                                        <li><a href="product-grids.html">Microphones</a></li>
-                                        <li><a href="product-grids.html">Chargers</a></li>
-                                        <li><a href="product-grids.html">Batteries</a></li>
-                                        <li><a href="product-grids.html">Cables & Adapters</a></li>
-                                    </ul>
-                                </li>
-                                <li><a href="product-grids.html">accessories</a></li>
-                                <li><a href="product-grids.html">Televisions</a></li>
-                                <li><a href="product-grids.html">best selling</a></li>
-                                <li><a href="product-grids.html">top 100 offer</a></li>
-                                <li><a href="product-grids.html">sunglass</a></li>
-                                <li><a href="product-grids.html">watch</a></li>
-                                <li><a href="product-grids.html">man’s product</a></li>
-                                <li><a href="product-grids.html">Home Audio & Theater</a></li>
-                                <li><a href="product-grids.html">Computers & Tablets </a></li>
-                                <li><a href="product-grids.html">Video Games </a></li>
-                                <li><a href="product-grids.html">Home Appliances </a></li> -->
                             </ul>
                         </div>
                         <!-- End Mega Category Menu -->
@@ -309,13 +261,6 @@
                                 <div class="main-img">
                                     <img src="assets/images/item_images/<?= $itemList['item_photo'] ?>" id="current" alt="#">
                                 </div>
-                                <!-- <div class="images">
-                                    <img src="assets/images/product-details/01.jpg" class="img" alt="#">
-                                    <img src="assets/images/product-details/02.jpg" class="img" alt="#">
-                                    <img src="assets/images/product-details/03.jpg" class="img" alt="#">
-                                    <img src="assets/images/product-details/04.jpg" class="img" alt="#">
-                                    <img src="assets/images/product-details/05.jpg" class="img" alt="#">
-                                </div> -->
                             </main>
                         </div>
                     </div>
@@ -562,69 +507,9 @@
         </div>
         </div>
 
-    <!-- Review Modal -->
-    <!-- <div class="modal fade review-modal" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Leave a Review</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <div class="row">
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <label for="review-name">Your Name</label>
-                                <input class="form-control" type="text" id="review-name" required>
-                            </div>
-                        </div>
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <label for="review-email">Your Email</label>
-                                <input class="form-control" type="email" id="review-email" required>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <label for="review-subject">Subject</label>
-                                <input class="form-control" type="text" id="review-subject" required>
-                            </div>
-                        </div>
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <label for="review-rating">Rating</label>
-                                <select class="form-control" id="review-rating">
-                                    <option>5 Stars</option>
-                                    <option>4 Stars</option>
-                                    <option>3 Stars</option>
-                                    <option>2 Stars</option>
-                                    <option>1 Star</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="review-message">Review</label>
-                        <textarea class="form-control" id="review-message" rows="8" required></textarea>
-                    </div>
-                </div>
-                <div class="modal-footer button">
-                    <button type="button" class="btn">Submit Review</button>
-                </div>
-            </div>
-        </div>
-    </div> -->
-    <!-- End Review Modal -->
-
     <!-- Footer Start -->
     <?php
         include 'footer.php';
     ?>
     <!-- Footer End -->
     
-    
-</body>
-</html>
