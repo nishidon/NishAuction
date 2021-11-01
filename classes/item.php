@@ -14,10 +14,10 @@
         if(move_uploaded_file($tmp_name, $target_file)){
           header("location: ../my-page.php");
         }else{
-          die("Error moving the photo.");
+          die("Error moving the photo: ".$this->conn->error);
         }
       }else{
-        die("Error in creating the user:".$this->conn->error."<a href='../my-page.php'>Back</a>");
+        die("Error in adding the item:".$this->conn->error."<a href='../my-page.php'>Back</a>");
       }
     }
 
